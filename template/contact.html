@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock title %}
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong>{{ message }}
+      </div>
+    {% endfor %}
+{% endif %}
+
+
+<div class="container-fluid">
+<img class="h-75 w-75 " src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80">
+</div>
+
+<div class="container my-5">
+    <form method="post" action="/contact/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter your name">
+          </div>
+        <div class="form-group">
+          <label for="email">Email address :</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter the email id">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number :</label>
+          <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter the phone number">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock body %}
