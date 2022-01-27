@@ -2,6 +2,8 @@ from django.shortcuts import render,HttpResponse
 from datetime import datetime
 from First.models import Contact
 from django.contrib import messages
+from django.views.decorators.http import require_http_methods
+from First.forms import ContactForm
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -11,8 +13,10 @@ def index(request):
 def about(request):
     return render(request,'about.html')
     #return HttpResponse("This is About Us page")
-    
+
 def contact(request):
+    a = ContactForm()
+
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -21,6 +25,6 @@ def contact(request):
         if name != '':
             contact.save()
             messages.success(request,'Yuor form has been submiited Successfully!!')
-    return render(request,'contact.html')
-    #return HttpResponse("This is Contact page")
+    return render(request,'contact.html',{'form':a})
+    return HttpResponse("This is Contact page")
     

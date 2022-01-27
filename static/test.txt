@@ -1,5 +1,0 @@
-Hello World
-
-I am Darsh Jasani
-
-What's your name?
